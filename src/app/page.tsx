@@ -1,7 +1,7 @@
-import Module1V2 from '@/components/module1-v2';
-import Module2V2 from '@/components/module2-v2';
-import Module3V2 from '@/components/module3-v2';
-import Module4Game from '@/components/module4-game';
+import Module1V2 from "@/components/module1-v2";
+import Module2V2 from "@/components/module2-v2";
+import Module3V2 from "@/components/module3-v2";
+import Module4Game from "@/components/module4-game";
 
 export default function Home() {
   return (

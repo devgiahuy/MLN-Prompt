@@ -52,14 +52,14 @@ export default function Module2V2() {
    const generatedPrompt = generatePrompt();
 
    return (
-      <section className="min-h-screen bg-[#f8fafc] py-24 px-6 relative overflow-hidden">
+      <section className="min-h-screen bg-[#f8fafc] py-24 px-6 relative overflow-hidden font-mono">
          {/* Ethereal Background Glows */}
-         <div className="absolute top-0 right-[-10%] w-[40vw] h-[40vw] rounded-full bg-rose-200/40 blur-[120px] pointer-events-none mix-blend-multiply" />
-         <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-200/40 blur-[120px] pointer-events-none mix-blend-multiply" />
+         <div className="absolute top-0 right-[-10%] w-[40vw] h-[40vw] rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-rose-200/40 via-transparent to-transparent pointer-events-none" />
+         <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-200/40 via-transparent to-transparent pointer-events-none" />
 
          <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-16 space-y-4">
-               <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/50 text-indigo-500 font-semibold text-sm shadow-sm">
+               <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/90 border border-white/50 text-indigo-500 font-semibold text-sm shadow-sm">
                   <Layers size={16} /> Module 2
                </div>
                <h2 className="text-4xl font-bold tracking-tight text-slate-800">Interactive Prompt Builder</h2>
@@ -68,7 +68,7 @@ export default function Module2V2() {
 
             <div className="grid lg:grid-cols-2 gap-10 items-start">
                {/* Controls - Left Panel (Frosted Glass) */}
-               <div className="bg-white/40 backdrop-blur-2xl p-8 rounded-[2.5rem] border border-white/60 space-y-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+               <div className="bg-white/95 p-8 rounded-[2.5rem] border border-white/60 space-y-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
                   
                   <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-slate-700">
                      <span className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm font-bold shadow-sm">1</span>
@@ -79,10 +79,10 @@ export default function Module2V2() {
                      <div className="space-y-3">
                         <Label className="text-slate-600 font-semibold text-sm">Vai trò (Persona)</Label>
                         <Select value={state.persona} onValueChange={(val: string | null) => { if (val) handleChange('persona', val); }}>
-                           <SelectTrigger className="w-full bg-white/50 backdrop-blur-sm border-white/60 text-slate-800 h-12 rounded-2xl focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors shadow-sm">
+                           <SelectTrigger className="w-full bg-white/90 border-white/60 text-slate-800 h-12 rounded-2xl focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors shadow-sm">
                               <SelectValue placeholder="Chọn vai trò" />
                            </SelectTrigger>
-                           <SelectContent className="bg-white/90 backdrop-blur-xl border-white/60 text-slate-800 rounded-xl">
+                           <SelectContent className="bg-white/95 border-white/60 text-slate-800 rounded-xl">
                               <SelectItem value="Chuyên gia Triết học">Chuyên gia Triết học</SelectItem>
                               <SelectItem value="Sinh viên Gen Z">Sinh viên Gen Z</SelectItem>
                               <SelectItem value="Nhà phê bình công nghệ">Nhà phê bình công nghệ</SelectItem>
@@ -97,7 +97,7 @@ export default function Module2V2() {
                            value={state.context}
                            onChange={(e) => handleChange('context', e.target.value)}
                            rows={2}
-                           className="w-full bg-white/50 backdrop-blur-sm border-white/60 text-slate-800 rounded-2xl px-4 py-3 focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-colors resize-none leading-relaxed shadow-sm"
+                           className="w-full bg-white/90 border-white/60 text-slate-800 rounded-2xl px-4 py-3 focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-colors resize-none leading-relaxed shadow-sm"
                         />
                      </div>
 
@@ -107,7 +107,7 @@ export default function Module2V2() {
                            value={state.task}
                            onChange={(e) => handleChange('task', e.target.value)}
                            rows={2}
-                           className="w-full bg-white/50 backdrop-blur-sm border-white/60 text-slate-800 rounded-2xl px-4 py-3 focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-colors resize-none leading-relaxed shadow-sm"
+                           className="w-full bg-white/90 border-white/60 text-slate-800 rounded-2xl px-4 py-3 focus:ring-indigo-500/50 focus:border-indigo-500 outline-none transition-colors resize-none leading-relaxed shadow-sm"
                         />
                      </div>
 
@@ -117,7 +117,7 @@ export default function Module2V2() {
                            <Input 
                               value={state.constraintFormat}
                               onChange={(e) => handleChange('constraintFormat', e.target.value)}
-                              className="bg-white/50 backdrop-blur-sm border-white/60 text-slate-800 h-11 rounded-2xl focus:ring-indigo-500/50 focus:border-indigo-500 shadow-sm"
+                              className="bg-white/90 border-white/60 text-slate-800 h-11 rounded-2xl focus:ring-indigo-500/50 focus:border-indigo-500 shadow-sm"
                            />
                         </div>
                         <div className="space-y-3">
@@ -125,7 +125,7 @@ export default function Module2V2() {
                            <Input 
                               value={state.constraintLength}
                               onChange={(e) => handleChange('constraintLength', e.target.value)}
-                              className="bg-white/50 backdrop-blur-sm border-white/60 text-slate-800 h-11 rounded-2xl focus:ring-indigo-500/50 focus:border-indigo-500 shadow-sm"
+                              className="bg-white/90 border-white/60 text-slate-800 h-11 rounded-2xl focus:ring-indigo-500/50 focus:border-indigo-500 shadow-sm"
                            />
                         </div>
                      </div>
@@ -133,7 +133,7 @@ export default function Module2V2() {
                      <div className="space-y-4 pt-4 border-t border-slate-200/50">
                         <Label className="text-slate-600 font-semibold text-sm">Triết lý Thiết kế (Modifiers)</Label>
                         
-                        <div className="flex items-center justify-between p-4 bg-white/30 backdrop-blur-sm border border-white/50 rounded-2xl shadow-sm">
+                        <div className="flex items-center justify-between p-4 bg-white/80 border border-white/50 rounded-2xl shadow-sm">
                            <div className="space-y-1">
                               <div className="font-semibold text-slate-700">Tư duy Phản biện</div>
                               <div className="text-xs text-slate-500 font-medium">Nhìn nhận đa chiều</div>
@@ -141,7 +141,7 @@ export default function Module2V2() {
                            <Switch checked={state.isCritical} onCheckedChange={(val) => handleChange('isCritical', val)} />
                         </div>
                         
-                        <div className="flex items-center justify-between p-4 bg-white/30 backdrop-blur-sm border border-white/50 rounded-2xl shadow-sm">
+                        <div className="flex items-center justify-between p-4 bg-white/80 border border-white/50 rounded-2xl shadow-sm">
                            <div className="space-y-1">
                               <div className="font-semibold text-slate-700">Liên hệ Thực tiễn</div>
                               <div className="text-xs text-slate-500 font-medium">Đề cao tính ứng dụng</div>
@@ -153,7 +153,7 @@ export default function Module2V2() {
                </div>
 
                {/* Live Preview - Magic Mirror (Right Panel) */}
-               <div className="sticky top-24 bg-white/20 backdrop-blur-3xl text-slate-800 p-8 sm:p-10 rounded-[2.5rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-white/80 relative min-h-[600px] flex flex-col overflow-hidden">
+               <div className="sticky top-24 bg-white/90 p-8 sm:p-10 rounded-[2.5rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-white/80 relative min-h-[600px] flex flex-col overflow-hidden will-change-transform">
                   
                   {/* Subtle inner glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/30 via-white/10 to-rose-100/30 pointer-events-none" />
@@ -167,7 +167,7 @@ export default function Module2V2() {
                      </div>
                      
                      {/* The Magic Text */}
-                     <div className="font-serif text-lg sm:text-xl leading-relaxed text-slate-700 flex-1 whitespace-pre-wrap break-words tracking-wide">
+                     <div className="font-mono text-base sm:text-lg leading-relaxed text-slate-700 flex-1 whitespace-pre-wrap break-words tracking-wide">
                         {generatedPrompt}
                         <motion.span 
                            initial={{ opacity: 0 }}

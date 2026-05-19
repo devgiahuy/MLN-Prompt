@@ -1,0 +1,27 @@
+HỒ SƠ KIẾN TRÚC & TRIỂN KHAI DỰ ÁN: PHILOPROMPTTài liệu Đặc tả Kỹ thuật (Technical Specification) dành cho Lập trình viên1. KIẾN TRÚC TỔNG QUAN: TRẢI NGHIỆM 3 TẦNG (HỌC - CHƠI - NHỚ)Dự án được xây dựng dưới dạng Long-form Web Infographic (Trang cuộn dài), không chuyển trang (Single Page) nhằm giữ mạch cảm xúc người dùng. Hệ thống chia làm 3 tầng:Tầng 1: HỌC (Module 1, 2, 3): Giao diện sáng sủa (Light mode). Người dùng cuộn trang để tiếp thu lý thuyết Triết học  và tương tác với công cụ Builder.  Tầng 2: CHƠI (Module 4): Cuộn đến cuối trang, giao diện đổi sang Terminal/Hacker vibe (Dark mode). Khán giả tham gia game "Cứu AI ảo giác". Các lý thuyết học ở Tầng 1 sẽ hóa thành các "Mảnh ghép dữ liệu" (Cards).  Tầng 3: NHỚ (Kết cục): Sau khi win game, dùng Framer Motion (layoutId) để các thẻ bài bung ra, nối mũi tên và tạo thành The Ultimate Master Prompting Framework.  2. TECH STACK & LỰA CHỌN CƠ SỞ DỮ LIỆUFramework: Next.js (App Router) + React.Styling: Tailwind CSS (hỗ trợ chuyển đổi Dark/Light mode cực nhanh).Animation: Framer Motion (bắt buộc dùng layoutId để các component bay mượt từ vị trí này sang vị trí khác trên DOM).  Database & Realtime (MỚI): Supabase.Lý do: Free Tier cho phép 500 kết nối đồng thời (dư sức cho 1 lớp học 100 sinh viên), setup Postgres Table trực quan như Excel, hỗ trợ Supabase Realtime (WebSockets) đẩy dữ liệu vote lên máy chiếu ngay lập tức mà không cần viết API phức tạp.3. ĐẶC TẢ CHI TIẾT CÁC MODULE (HƯỚNG DẪN CODE)Module 1: Scroll-telling Infographic (Lý thuyết)Mục tiêu: Thay thế slide PowerPoint.  Kỹ thuật: Sử dụng framer-motion (cụ thể là useScroll và useTransform) để tạo hiệu ứng mờ dần (fade) và trượt (slide) khi user cuộn chuột (Smooth Scroll).  Nội dung Code: Khởi tạo các Component hiển thị mối quan hệ Biện chứng:Vật chất: Khối Database/Dữ liệu thô (Tồn tại khách quan). Nhấn mạnh AI không có dữ liệu sẽ không thể trả lời.  Ý thức: Khối Prompt của con người (Ý thức chủ động). Logic con người tốt -> AI mạnh.  Module 2: Interactive Prompt Builder (Bộ ghép lệnh)Mục tiêu: Công cụ tạo Prompt trực quan dạng Split-screen Grid (Chia đôi màn hình).  Kỹ thuật (State Management): Sử dụng useState dạng Object để lưu trữ cấu trúc Prompt: context, persona, task, constraints.Giao diện:Bên trái (Controls): Form Select/Dropdown (Chọn vai trò) và Toggle Switch (Gạt bật/tắt yêu cầu liên hệ thực tiễn, phản biện Triết học).  Bên phải (Preview): Hiển thị chuỗi văn bản thời gian thực (Live Preview) ghép từ các state bên trái. Component này sẽ được tái sử dụng làm "Bảng điều khiển" cho Game ở Module 4.  Module 3: Live Critique Hub (Kho đối chiếu)Mục tiêu: So sánh kết quả AI.Kỹ thuật: CSS 3D Transforms (perspective, rotateY) kết hợp Framer Motion để tạo hiệu ứng thẻ lật (Flip Cards).  Nội dung: * Mặt trước: "Prompt sơ sài" và kết quả AI ngớ ngẩn (lỗi siêu hình).  Mặt sau: "Philo-Prompt" chuẩn phương pháp luận và kết quả AI xịn.  Module 4: Game "Jailbreak AI" (Đỉnh cao của Video Code)Giao diện Máy chiếu (Master Screen):Hiển thị 4 khe cắm khóa (Tương ứng: [Bối cảnh], [Vai trò], [Nhiệm vụ], [Ràng buộc]).  Kho đồ hiển thị các thẻ văn bản (có thẻ đúng, sai, bẫy ảo giác).  Luồng logic Code chi tiết:Dev thiết lập máy trạng thái currentSlot (từ 1 đến 4). Khi mở khe số 1, gọi hàm filter lấy 4 thẻ tương ứng từ mảng dữ liệu.  Máy chiếu render mã QR. Cả lớp quét mã.  Giao diện Mobile của lớp: Chỉ hiện 4 nút bấm to khổng lồ (A, B, C, D). Khi bấm, gọi hàm supabase.from('votes').insert(...). Bỏ việc gõ chữ để tránh lỗi.  Realtime trên Máy chiếu: Dùng supabase.channel('custom-insert-channel').on('postgres_changes') để đếm vote realtime. Hết giờ, thẻ được vote nhiều nhất sẽ animate layoutId bay vào khe cắm.  Xử lý Logic game (Tối ưu Deadline): Không làm thanh máu (HP bar). Cắm sai -> Đổi CSS màn hình thành hiệu ứng Glitch, báo lỗi vi phạm Triết học, bắt vote lại.  CƠ CHẾ CHEAT CODE (Fall-back an toàn): Dev code một nút tàng hình (opacity-0) ở góc phải màn hình admin. Nếu bấm nút này -> Hàm forceWin() chạy, bỏ qua toàn bộ vote của lớp, tự động lôi thẻ đúng cắm vào khe và mở khe tiếp theo. Chống rủi ro rớt mạng hoặc lớp vote "troll".  Module Phụ: Route /ai-usageNội dung: Một trang route riêng (app/ai-usage/page.tsx).Giao diện: Bảng (Table) rạch ròi: Cột 1 (Dev tự code/Viết logic) vs Cột 2 (AI sinh animation/Gợi ý layout). Kèm nút tải file PDF Cam kết liêm chính.  4. SCHEMA CƠ SỞ DỮ LIỆU (SUPABASE)Tạo 1 project miễn phí trên Supabase, tạo 1 bảng duy nhất tên là votes để tracking lượt bình chọn của cả lớp:SQL-- Chạy đoạn này trong SQL Editor của Supabase
+CREATE TABLE votes (
+  id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+  slot_id INT NOT NULL,         -- Khe cắm đang mở (1, 2, 3, 4)
+  option_selected VARCHAR(10),  -- Thẻ được chọn ('A', 'B', 'C', 'D')
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Bật Realtime cho table votes
+alter publication supabase_realtime add table votes;
+5. KIỂM TRA RUBRIC CHẤM ĐIỂM (Dành cho MC / Người thuyết trình)
+Khi quay video demo hoặc đứng thuyết trình, cần nhấn mạnh vào các Keyword này để giám khảo chấm kịch trần:
+
+
+Chiều sâu: Nói rõ bộ Builder được thiết kế dựa trên logic Vật chất - Ý thức.  
+
+
+Hình thức & Sáng tạo: Nhấn mạnh việc bỏ slide, dùng Web tương tác 3 tầng và hiệu ứng chuyển đổi trạng thái.  
+
+
+Kỹ thuật (Điểm cộng): Khoe việc dùng Next.js và xử lý Realtime Database đồng bộ hàng trăm user.  
+
+
+Tương tác: Khoe cơ chế QR Code giải quyết bài toán ngủ gật trong lớp (dự kiến >80% tương tác).  
+
+
+Trách nhiệm AI: Show ngay tab /ai-usage cuối bài để khẳng định tính minh bạch.

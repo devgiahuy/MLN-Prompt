@@ -1,0 +1,132 @@
+[
+  {
+    "id": "critique-01",
+    "topic": "Viết tiểu luận Triết học",
+    "normalPrompt": {
+      "prompt": "Viết cho tôi một bài tiểu luận ngắn về mối quan hệ giữa Vật chất và Ý thức.",
+      "aiResult": "AI trả về một bài viết rập khuôn, chỉ liệt kê định nghĩa sách giáo khoa một cách máy móc, khô khan.",
+      "critique": "Lỗi siêu hình, cô lập khái niệm: Xem xét Vật chất và Ý thức là hai thực thể tách rời, không chỉ ra được sự chuyển hóa và mối tương tác động trong thực tế số."
+    },
+    "philoPrompt": {
+      "prompt": "Dưới góc nhìn biện chứng, hãy phân tích mối quan hệ giữa hạ tầng phần cứng/thuật toán AI (Vật chất) và kỹ nghệ viết câu lệnh Prompt của con người (Ý thức) trong việc định hình tri thức mới.",
+      "aiResult": "AI lập luận sắc bén, kết nối mượt mà giữa lý thuyết kinh điển và thực tế công nghệ, đưa ra cấu trúc bài luận có chiều sâu và tính ứng dụng cao."
+    }
+  },
+  {
+    "id": "critique-02",
+    "topic": "Tối ưu hóa Thuật toán (IT)",
+    "normalPrompt": {
+      "prompt": "Viết cho tôi mã nguồn thuật toán sắp xếp mảng nhanh nhất hiện nay.",
+      "aiResult": "AI trả về đoạn code sao chép mẫu của thuật toán QuickSort hoặc MergeSort thuần túy lý thuyết.",
+      "critique": "Lỗi siêu hình, lý thuyết suông: Xem xét thuật toán trong môi trường lý tưởng, tách rời hoàn toàn khỏi điều kiện vật chất thực tế của hệ thống phần cứng."
+    },
+    "philoPrompt": {
+      "prompt": "Đặt trong bối cảnh thiết bị có giới hạn tài nguyên RAM 4GB và dữ liệu đầu vào là luồng liên tục, hãy đề xuất và tối ưu thuật toán sắp xếp phù hợp nhất kèm đánh giá độ phức tạp.",
+      "aiResult": "AI chọn lọc thuật toán tối ưu dựa trên cấu hình phần cứng cụ thể, viết code có xử lý bộ nhớ đệm và giải thích rõ ràng lý do lựa chọn."
+    }
+  },
+  {
+    "id": "critique-03",
+    "topic": "Phân tích Kinh tế thị trường",
+    "normalPrompt": {
+      "prompt": "Tại sao giá cổ phiếu của công ty công nghệ X lại giảm mạnh vào phiên sáng nay?",
+      "aiResult": "AI trả lời ngắn gọn: Do sáng nay có một bài báo đưa tin tiêu cực về ban lãnh đạo công ty.",
+      "critique": "Lỗi phiến diện, xem ngọn bỏ gốc: Chỉ nhìn thấy hiện tượng nhất thời, cô lập dòng thời gian, vi phạm nguyên lý về mối liên hệ phổ biến và các nguyên nhân sâu xa bên trong."
+    },
+    "philoPrompt": {
+      "prompt": "Đặt trong chu kỳ suy thoái chung của ngành và chính sách thắt chặt tiền tệ hiện tại, hãy phân tích các nhân tố bên trong và bên ngoài dẫn đến xu hướng giảm giá cổ phiếu X.",
+      "aiResult": "AI cung cấp báo cáo đa chiều: phân tích từ kinh tế vĩ mô, cấu trúc nội tại doanh nghiệp cho đến tâm lý ngắn hạn của nhà đầu tư, giúp người học có cái nhìn toàn cảnh."
+    }
+  },
+  {
+    "id": "critique-04",
+    "topic": "Xây dựng Lộ trình Học tập",
+    "normalPrompt": {
+      "prompt": "Hãy lập cho tôi lịch học tập 14 tiếng mỗi ngày để tôi trở thành thủ khoa công nghệ thông tin.",
+      "aiResult": "AI chia ca chi tiết từ 5 giờ sáng đến 11 giờ đêm, nhồi nhét lý thuyết liên tục không có ngày nghỉ.",
+      "critique": "Lỗi chủ quan duy ý chí: Đề cao tuyệt đối sức mạnh quyết tâm của Ý thức mà phớt lờ quy luật sinh học và giới hạn thể chất - cơ sở vật chất quyết định năng suất bộ não."
+    },
+    "philoPrompt": {
+      "prompt": "Dựa trên hiệu suất sinh học thực tế (ngủ đủ 7 tiếng) và lịch học hiện tại, hãy thiết kế lộ trình tăng dần khối lượng tự học theo mô hình cuốn chiếu và có thời gian phục hồi.",
+      "aiResult": "AI đưa ra lịch trình thực tế, bền vững, kết hợp phương pháp Pomodoro và các quãng nghỉ khoa học, đảm bảo khả năng duy trì lâu dài mà không bị kiệt sức."
+    }
+  },
+  {
+    "id": "critique-05",
+    "topic": "Phân tích Tác phẩm Văn học",
+    "normalPrompt": {
+      "prompt": "Phân tích diễn biến tâm lý của nhân vật Chí Phèo trong tác phẩm cùng tên.",
+      "aiResult": "AI liệt kê các trạng thái: say rượu, chửi bới, rạch mặt ăn vạ, rồi khao khát làm người lương thiện.",
+      "critique": "Lỗi cô lập hiện tượng: Tách rời diễn biến tâm lý cá nhân khỏi hoàn cảnh lịch sử - xã hội, vi phạm nguyên lý Tồn tại xã hội quyết định Ý thức xã hội."
+    },
+    "philoPrompt": {
+      "prompt": "Dưới góc nhìn 'Tồn tại xã hội quyết định Ý thức xã hội', hãy phân tích sự tha hóa của nhân vật Chí Phèo như một hệ quả tất yếu từ áp bức kinh tế và định kiến giai cấp.",
+      "aiResult": "AI giải mã sâu sắc tác phẩm, chứng minh tâm lý Chí Phèo không tự nhiên sinh ra mà là tấm gương phản chiếu sự tàn khốc của xã hội nửa phong kiến thuộc địa."
+    }
+  },
+  {
+    "id": "critique-06",
+    "topic": "Dịch thuật Chuyên ngành",
+    "normalPrompt": {
+      "prompt": "Dịch từ tiếng Anh 'Culture' sang tiếng Việt và cho ví dụ.",
+      "aiResult": "AI dịch mặc định là: 'Văn hóa' và đưa ra ví dụ về văn hóa nghệ thuật, phong tục tập quán.",
+      "critique": "Tư duy siêu hình, đóng băng ngữ nghĩa: Xem từ ngữ như một hằng số bất biến, không đặt từ vựng vào mối liên hệ lịch sử - cụ thể của từng ngành khoa học."
+    },
+    "philoPrompt": {
+      "prompt": "Hãy dịch từ 'Culture' trong hai ngữ cảnh đối chiếu: Ngữ cảnh văn hóa học đại chúng và ngữ cảnh vi sinh học (bản dịch y khoa). Cho ví dụ cụ thể.",
+      "aiResult": "AI phân định rõ ràng: Một mặt là 'Văn hóa' (Xã hội), mặt khác là 'Sự nuôi cấy/Môi trường cấy vi khuẩn' (Y sinh), giúp bản dịch chính xác tuyệt đối."
+    }
+  },
+  {
+    "id": "critique-07",
+    "topic": "Thiết kế Trải nghiệm UI/UX",
+    "normalPrompt": {
+      "prompt": "Thiết kế cho tôi một giao diện ứng dụng di động thật độc lạ, nhiều hiệu ứng bay lượn theo sở thích cá nhân.",
+      "aiResult": "AI gợi ý một giao diện dày đặc hiệu ứng chuyển động phức tạp, màu sắc tương phản mạnh và phá cách.",
+      "critique": "Lỗi duy tâm chủ quan: Đặt ý chí thẩm mỹ cá nhân lên trên thực tiễn vật chất (thói quen thao tác của người dùng, giới hạn phần cứng và tốc độ tải trang trên mobile)."
+    },
+    "philoPrompt": {
+      "prompt": "Dựa trên nguyên lý 'Hình thức phục vụ công năng', hãy thiết kế layout ứng dụng mobile tối ưu hóa dựa trên hành vi cuộn chuột và vùng bấm tự nhiên của ngón tay cái.",
+      "aiResult": "AI đề xuất cấu trúc wireframe khoa học, tập trung vào trải nghiệm thực tế, phân bổ vị trí nút bấm công thái học giúp tăng tỷ lệ chuyển đổi."
+    }
+  },
+  {
+    "id": "critique-08",
+    "topic": "Quản lý Dự án & Làm việc nhóm",
+    "normalPrompt": {
+      "prompt": "Nhóm mình có hai thành viên đang cãi nhau gay gắt về ý tưởng, làm sao để họ dừng lại?",
+      "aiResult": "AI đưa ra lời khuyên chung chung: Bảo hai bạn nhường nhịn nhau, dĩ hòa vi quý, tổ chức một buổi uống cà phê tâm sự.",
+      "critique": "Né tránh mâu thuẫn: Tư duy siêu hình coi mâu thuẫn là tiêu cực cần dập tắt ngay, thay vì nhìn nhận mâu thuẫn là động lực của sự phát triển nếu được giải quyết đúng cách."
+    },
+    "philoPrompt": {
+      "prompt": "Áp dụng quy luật phủ định của phủ định và đấu tranh giữa các mặt đối lập, hãy phân tích xung đột lợi ích cốt lõi giữa hai ý tưởng và đề xuất giải pháp tích hợp điểm mạnh của cả hai.",
+      "aiResult": "AI vạch rõ bản chất xung đột, hướng dẫn trưởng nhóm cách phân rã hai ý tưởng, loại bỏ hạt nhân lạc hậu và giữ lại hạt nhân hợp lý để tạo ra một giải pháp thứ ba vượt trội."
+    }
+  },
+  {
+    "id": "critique-09",
+    "topic": "Sáng tạo Nội dung (Marketing)",
+    "normalPrompt": {
+      "prompt": "Hãy lên kế hoạch giúp kênh TikTok của tôi đạt 1 triệu người theo dõi trong 1 tuần mà không cần tốn chi phí.",
+      "aiResult": "AI vạch ra kế hoạch đăng 10 video mỗi ngày, dùng các thủ thuật giật tít, bắt trend bất chấp nội dung.",
+      "critique": "Ảo tưởng duy tâm: Muốn có bước nhảy vọt về Chất (1 triệu follower) mà không chịu tích lũy đủ về Lượng (nội dung giá trị, thời gian thuật toán phân phối, ngân sách vận hành)."
+    },
+    "philoPrompt": {
+      "prompt": "Ứng dụng quy luật chuyển hóa từ Lượng thành Chất, hãy xây dựng kế hoạch nội dung organic trong 3 tháng, tập trung tối ưu chỉ số giữ chân người xem qua từng tuần.",
+      "aiResult": "AI thiết kế lộ trình thực tế: Giai đoạn 1 tích lũy 'Lượng' (xây dựng tệp ngách, chuẩn hóa quy trình sản xuất), tạo tiền đề cho sự bùng nổ về 'Chất' ở các giai đoạn sau."
+    }
+  },
+  {
+    "id": "critique-10",
+    "topic": "Nghiên cứu Khoa học Sinh viên",
+    "normalPrompt": {
+      "prompt": "Tìm cho tôi các bài báo khoa học chứng minh rằng mạng xã hội hoàn toàn có hại đối với kết quả học tập của sinh viên.",
+      "aiResult": "AI chỉ quét và liệt kê một chiều các nghiên cứu nói về tác hại, sự sa sút học tập và mất tập trung.",
+      "critique": "Ngụy biện phiến diện, định kiến chủ quan: Thu thập dữ liệu một chiều để củng cố cho kết luận có sẵn, vi phạm nghiêm trọng nguyên tắc khách quan và toàn diện của lý luận nhận thức."
+    },
+    "philoPrompt": {
+      "prompt": "Hãy tổng hợp các nghiên cứu khoa học đa chiều về tác động của mạng xã hội đối với sinh viên, chỉ rõ cả mặt tích cực (kết nối học nhóm) lẫn tiêu cực (phân tán chú ý).",
+      "aiResult": "AI cung cấp một báo cáo tổng quan khách quan, phân tích dòng dữ liệu hai chiều, giúp người học rút ra kết luận toàn diện và đề xuất giải pháp quản lý thời gian hiệu quả."
+    }
+  }
+]

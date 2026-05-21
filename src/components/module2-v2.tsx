@@ -17,7 +17,9 @@ export default function Module2V2() {
       constraintFormat: 'Văn xuôi',
       constraintLength: 'Ngắn gọn',
       customConstraint: '',
-      isCritical: false,
+      isComprehensive: false,
+      isDevelopment: false,
+      isHistorical: false,
       isPractical: false
    });
 
@@ -30,10 +32,12 @@ export default function Module2V2() {
       if (state.context) prompt += `Bối cảnh: ${state.context}. \n`;
       if (state.task) prompt += `Nhiệm vụ: ${state.task}. \n\n`;
 
-      if (state.isCritical || state.isPractical) {
+      if (state.isComprehensive || state.isDevelopment || state.isHistorical || state.isPractical) {
          prompt += "Triết lý tiếp cận:\n";
-         if (state.isCritical) prompt += "- Phân tích phản biện đa chiều, tránh cái nhìn phiến diện.\n";
-         if (state.isPractical) prompt += "- Liên hệ thực tiễn, đề cao tính ứng dụng.\n";
+         if (state.isComprehensive) prompt += "- Phân tích vấn đề đa chiều: đánh giá cả mặt tích cực lẫn tiêu cực, yếu tố bên trong lẫn bên ngoài, cơ hội và rủi ro.\n";
+         if (state.isDevelopment) prompt += "- Không chỉ đưa ra thực trạng hiện tại, mà phải dự báo xu hướng biến đổi và đề xuất lộ trình phát triển trong tương lai.\n";
+         if (state.isHistorical) prompt += "- Đặt toàn bộ giải pháp vào đúng không gian, thời gian và điều kiện nguồn lực cụ thể của bối cảnh đã nêu, loại bỏ các giả định lý tưởng hóa.\n";
+         if (state.isPractical) prompt += "- Đề cao tính thực tiễn: Lọc bỏ các giả định lý tưởng hóa và lý thuyết suông. Bắt buộc mọi giải pháp/đề xuất phải khả thi, bị ràng buộc bởi giới hạn của nguồn lực thực tế (ngân sách, thời gian, rào cản công nghệ, hoặc giới hạn thể chất con người). Yêu cầu cung cấp các bước hành động cụ thể (actionable steps) và tiêu chí kiểm chứng kết quả.\n";
          prompt += "\n";
       }
       
@@ -135,16 +139,32 @@ export default function Module2V2() {
                         
                         <div className="flex items-center justify-between p-4 bg-white/80 border border-white/50 rounded-2xl shadow-sm">
                            <div className="space-y-1">
-                              <div className="font-semibold text-slate-700">Tư duy Phản biện</div>
-                              <div className="text-xs text-slate-500 font-medium">Nhìn nhận đa chiều</div>
+                              <div className="font-semibold text-slate-700">Quan điểm Toàn diện</div>
+                              <div className="text-xs text-slate-500 font-medium">Tránh nhìn nhận phiến diện</div>
                            </div>
-                           <Switch checked={state.isCritical} onCheckedChange={(val) => handleChange('isCritical', val)} />
+                           <Switch checked={state.isComprehensive} onCheckedChange={(val) => handleChange('isComprehensive', val)} />
                         </div>
                         
                         <div className="flex items-center justify-between p-4 bg-white/80 border border-white/50 rounded-2xl shadow-sm">
                            <div className="space-y-1">
-                              <div className="font-semibold text-slate-700">Liên hệ Thực tiễn</div>
-                              <div className="text-xs text-slate-500 font-medium">Đề cao tính ứng dụng</div>
+                              <div className="font-semibold text-slate-700">Quan điểm Phát triển</div>
+                              <div className="text-xs text-slate-500 font-medium">Nhìn nhận sự vật trong vận động</div>
+                           </div>
+                           <Switch checked={state.isDevelopment} onCheckedChange={(val) => handleChange('isDevelopment', val)} />
+                        </div>
+
+                        <div className="flex items-center justify-between p-4 bg-white/80 border border-white/50 rounded-2xl shadow-sm">
+                           <div className="space-y-1">
+                              <div className="font-semibold text-slate-700">Quan điểm Lịch sử - Cụ thể</div>
+                              <div className="text-xs text-slate-500 font-medium">Bám sát hoàn cảnh thực tế</div>
+                           </div>
+                           <Switch checked={state.isHistorical} onCheckedChange={(val) => handleChange('isHistorical', val)} />
+                        </div>
+
+                        <div className="flex items-center justify-between p-4 bg-white/80 border border-white/50 rounded-2xl shadow-sm">
+                           <div className="space-y-1">
+                              <div className="font-semibold text-slate-700">Quan điểm Thực tiễn</div>
+                              <div className="text-xs text-slate-500 font-medium">Gắn liền lý luận với thực tế</div>
                            </div>
                            <Switch checked={state.isPractical} onCheckedChange={(val) => handleChange('isPractical', val)} />
                         </div>

@@ -31,7 +31,7 @@
     "normalPrompt": {
       "prompt": "Tại sao giá cổ phiếu của công ty công nghệ X lại giảm mạnh vào phiên sáng nay?",
       "aiResult": "AI trả lời ngắn gọn: Do sáng nay có một bài báo đưa tin tiêu cực về ban lãnh đạo công ty.",
-      "critique": "Lỗi phiến diện, xem ngọn bỏ gốc: Chỉ nhìn thấy hiện tượng nhất thời, cô lập dòng thời gian, vi phạm nguyên lý về mối liên hệ phổ biến và các nguyên nhân sâu xa bên trong."
+      "critique": "Lỗi phiến diện, xem ngọn bỏ gốc: Chỉ nhìn thấy hiện tượng nhất thời, vi phạm Quan điểm Toàn diện khi bỏ qua các nhân tố kinh tế vĩ mô và cấu trúc nội tại."
     },
     "philoPrompt": {
       "prompt": "Đặt trong chu kỳ suy thoái chung của ngành và chính sách thắt chặt tiền tệ hiện tại, hãy phân tích các nhân tố bên trong và bên ngoài dẫn đến xu hướng giảm giá cổ phiếu X.",
@@ -44,7 +44,7 @@
     "normalPrompt": {
       "prompt": "Hãy lập cho tôi lịch học tập 14 tiếng mỗi ngày để tôi trở thành thủ khoa công nghệ thông tin.",
       "aiResult": "AI chia ca chi tiết từ 5 giờ sáng đến 11 giờ đêm, nhồi nhét lý thuyết liên tục không có ngày nghỉ.",
-      "critique": "Lỗi chủ quan duy ý chí: Đề cao tuyệt đối sức mạnh quyết tâm của Ý thức mà phớt lờ quy luật sinh học và giới hạn thể chất - cơ sở vật chất quyết định năng suất bộ não."
+      "critique": "Lỗi duy tâm chủ quan: Đề cao tuyệt đối Ý thức (quyết tâm) mà phớt lờ giới hạn Vật chất (thể chất con người). Vi phạm Quan điểm Thực tiễn khi lập một kế hoạch không thể thi hành."
     },
     "philoPrompt": {
       "prompt": "Dựa trên hiệu suất sinh học thực tế (ngủ đủ 7 tiếng) và lịch học hiện tại, hãy thiết kế lộ trình tăng dần khối lượng tự học theo mô hình cuốn chiếu và có thời gian phục hồi.",
@@ -70,7 +70,7 @@
     "normalPrompt": {
       "prompt": "Dịch từ tiếng Anh 'Culture' sang tiếng Việt và cho ví dụ.",
       "aiResult": "AI dịch mặc định là: 'Văn hóa' và đưa ra ví dụ về văn hóa nghệ thuật, phong tục tập quán.",
-      "critique": "Tư duy siêu hình, đóng băng ngữ nghĩa: Xem từ ngữ như một hằng số bất biến, không đặt từ vựng vào mối liên hệ lịch sử - cụ thể của từng ngành khoa học."
+      "critique": "Tư duy siêu hình, đóng băng ngữ nghĩa: Xem từ ngữ như một hằng số bất biến, vi phạm Quan điểm Lịch sử - Cụ thể khi không đặt từ vựng vào từng không gian ngành học."
     },
     "philoPrompt": {
       "prompt": "Hãy dịch từ 'Culture' trong hai ngữ cảnh đối chiếu: Ngữ cảnh văn hóa học đại chúng và ngữ cảnh vi sinh học (bản dịch y khoa). Cho ví dụ cụ thể.",
@@ -96,10 +96,10 @@
     "normalPrompt": {
       "prompt": "Nhóm mình có hai thành viên đang cãi nhau gay gắt về ý tưởng, làm sao để họ dừng lại?",
       "aiResult": "AI đưa ra lời khuyên chung chung: Bảo hai bạn nhường nhịn nhau, dĩ hòa vi quý, tổ chức một buổi uống cà phê tâm sự.",
-      "critique": "Né tránh mâu thuẫn: Tư duy siêu hình coi mâu thuẫn là tiêu cực cần dập tắt ngay, thay vì nhìn nhận mâu thuẫn là động lực của sự phát triển nếu được giải quyết đúng cách."
+      "critique": "Tư duy siêu hình tĩnh tại: Xem xung đột là bế tắc. Thay vào đó, cần dùng Quan điểm Phát triển để thấy mâu thuẫn chính là động lực để tìm ra giải pháp mới."
     },
     "philoPrompt": {
-      "prompt": "Áp dụng quy luật phủ định của phủ định và đấu tranh giữa các mặt đối lập, hãy phân tích xung đột lợi ích cốt lõi giữa hai ý tưởng và đề xuất giải pháp tích hợp điểm mạnh của cả hai.",
+      "prompt": "Áp dụng Quan điểm Phát triển, hãy phân tích cốt lõi của hai ý tưởng đối lập này và đề xuất một giải pháp thứ ba tiến bộ hơn, tích hợp được ưu điểm của cả hai.",
       "aiResult": "AI vạch rõ bản chất xung đột, hướng dẫn trưởng nhóm cách phân rã hai ý tưởng, loại bỏ hạt nhân lạc hậu và giữ lại hạt nhân hợp lý để tạo ra một giải pháp thứ ba vượt trội."
     }
   },
@@ -109,24 +109,11 @@
     "normalPrompt": {
       "prompt": "Hãy lên kế hoạch giúp kênh TikTok của tôi đạt 1 triệu người theo dõi trong 1 tuần mà không cần tốn chi phí.",
       "aiResult": "AI vạch ra kế hoạch đăng 10 video mỗi ngày, dùng các thủ thuật giật tít, bắt trend bất chấp nội dung.",
-      "critique": "Ảo tưởng duy tâm: Muốn có bước nhảy vọt về Chất (1 triệu follower) mà không chịu tích lũy đủ về Lượng (nội dung giá trị, thời gian thuật toán phân phối, ngân sách vận hành)."
+      "critique": "Ảo tưởng duy ý chí, phi thực tế: Muốn có kết quả ngay mà phớt lờ Quan điểm Phát triển (cần thời gian xây dựng) và Quan điểm Thực tiễn (giới hạn thuật toán)."
     },
     "philoPrompt": {
-      "prompt": "Ứng dụng quy luật chuyển hóa từ Lượng thành Chất, hãy xây dựng kế hoạch nội dung organic trong 3 tháng, tập trung tối ưu chỉ số giữ chân người xem qua từng tuần.",
-      "aiResult": "AI thiết kế lộ trình thực tế: Giai đoạn 1 tích lũy 'Lượng' (xây dựng tệp ngách, chuẩn hóa quy trình sản xuất), tạo tiền đề cho sự bùng nổ về 'Chất' ở các giai đoạn sau."
-    }
-  },
-  {
-    "id": "critique-10",
-    "topic": "Nghiên cứu Khoa học Sinh viên",
-    "normalPrompt": {
-      "prompt": "Tìm cho tôi các bài báo khoa học chứng minh rằng mạng xã hội hoàn toàn có hại đối với kết quả học tập của sinh viên.",
-      "aiResult": "AI chỉ quét và liệt kê một chiều các nghiên cứu nói về tác hại, sự sa sút học tập và mất tập trung.",
-      "critique": "Ngụy biện phiến diện, định kiến chủ quan: Thu thập dữ liệu một chiều để củng cố cho kết luận có sẵn, vi phạm nghiêm trọng nguyên tắc khách quan và toàn diện của lý luận nhận thức."
-    },
-    "philoPrompt": {
-      "prompt": "Hãy tổng hợp các nghiên cứu khoa học đa chiều về tác động của mạng xã hội đối với sinh viên, chỉ rõ cả mặt tích cực (kết nối học nhóm) lẫn tiêu cực (phân tán chú ý).",
-      "aiResult": "AI cung cấp một báo cáo tổng quan khách quan, phân tích dòng dữ liệu hai chiều, giúp người học rút ra kết luận toàn diện và đề xuất giải pháp quản lý thời gian hiệu quả."
+      "prompt": "Áp dụng Quan điểm Phát triển, hãy xây dựng lộ trình nội dung organic trong 3 tháng. Tập trung vào các mục tiêu thực tiễn theo từng giai đoạn (xây tệp, tối ưu giữ chân) thay vì tăng trưởng nóng.",
+      "aiResult": "AI thiết kế lộ trình thực tế: Giai đoạn 1 tập trung xây dựng nền tảng (xác định tệp ngách, chuẩn hóa quy trình), tạo tiền đề vững chắc cho sự tăng trưởng bền vững ở các giai đoạn sau."
     }
   }
 ]

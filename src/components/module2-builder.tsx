@@ -17,7 +17,9 @@ export default function Module2Builder() {
       constraintFormat: 'Markdown',
       constraintLength: 'Ngắn gọn, khoảng 300 từ',
       customConstraint: '',
-      isCritical: false,
+      isComprehensive: false,
+      isDevelopment: false,
+      isHistorical: false,
       isPractical: false
    });
 
@@ -32,11 +34,13 @@ export default function Module2Builder() {
       
       prompt += '\n';
 
-      if (state.isCritical) {
-         prompt += "Yêu cầu: Hãy phân tích phản biện sâu sắc, nhìn nhận vấn đề từ nhiều mặt đối lập và tránh cái nhìn phiến diện siêu hình. \n";
-      }
-      if (state.isPractical) {
-         prompt += "Yêu cầu: Hãy liên hệ thực tiễn chặt chẽ, đưa ra các ví dụ cụ thể mang tính ứng dụng cao. \n";
+      if (state.isComprehensive || state.isDevelopment || state.isHistorical || state.isPractical) {
+         prompt += "Triết lý tiếp cận:\n";
+         if (state.isComprehensive) prompt += "- Phân tích vấn đề đa chiều: đánh giá cả mặt tích cực lẫn tiêu cực, yếu tố bên trong lẫn bên ngoài, cơ hội và rủi ro.\n";
+         if (state.isDevelopment) prompt += "- Không chỉ đưa ra thực trạng hiện tại, mà phải dự báo xu hướng biến đổi và đề xuất lộ trình phát triển trong tương lai.\n";
+         if (state.isHistorical) prompt += "- Đặt toàn bộ giải pháp vào đúng không gian, thời gian và điều kiện nguồn lực cụ thể của bối cảnh đã nêu, loại bỏ các giả định lý tưởng hóa.\n";
+         if (state.isPractical) prompt += "- Đề cao tính thực tiễn: Lọc bỏ các giả định lý tưởng hóa và lý thuyết suông. Bắt buộc mọi giải pháp/đề xuất phải khả thi, bị ràng buộc bởi giới hạn của nguồn lực thực tế (ngân sách, thời gian, rào cản công nghệ, hoặc giới hạn thể chất con người). Yêu cầu cung cấp các bước hành động cụ thể (actionable steps) và tiêu chí kiểm chứng kết quả.\n";
+         prompt += "\n";
       }
       
       const constraints = [];
@@ -137,16 +141,32 @@ export default function Module2Builder() {
                         
                         <div className="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors rounded-xl">
                            <div className="space-y-1">
-                              <div className="font-medium text-slate-200">Tư duy phản biện (Critical)</div>
-                              <div className="text-xs text-slate-500">Phân tích đa chiều, chống siêu hình</div>
+                              <div className="font-medium text-slate-200">Quan điểm Toàn diện</div>
+                              <div className="text-xs text-slate-500">Tránh nhìn nhận phiến diện</div>
                            </div>
-                           <Switch checked={state.isCritical} onCheckedChange={(val) => handleChange('isCritical', val)} />
+                           <Switch checked={state.isComprehensive} onCheckedChange={(val) => handleChange('isComprehensive', val)} />
                         </div>
                         
                         <div className="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors rounded-xl">
                            <div className="space-y-1">
-                              <div className="font-medium text-slate-200">Liên hệ thực tiễn (Practical)</div>
-                              <div className="text-xs text-slate-500">Gắn kết lý thuyết và ứng dụng thực tế</div>
+                              <div className="font-medium text-slate-200">Quan điểm Phát triển</div>
+                              <div className="text-xs text-slate-500">Nhìn nhận sự vật trong vận động</div>
+                           </div>
+                           <Switch checked={state.isDevelopment} onCheckedChange={(val) => handleChange('isDevelopment', val)} />
+                        </div>
+
+                        <div className="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors rounded-xl">
+                           <div className="space-y-1">
+                              <div className="font-medium text-slate-200">Quan điểm Lịch sử - Cụ thể</div>
+                              <div className="text-xs text-slate-500">Bám sát hoàn cảnh thực tế</div>
+                           </div>
+                           <Switch checked={state.isHistorical} onCheckedChange={(val) => handleChange('isHistorical', val)} />
+                        </div>
+
+                        <div className="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors rounded-xl">
+                           <div className="space-y-1">
+                              <div className="font-medium text-slate-200">Quan điểm Thực tiễn</div>
+                              <div className="text-xs text-slate-500">Gắn liền lý luận với thực tế</div>
                            </div>
                            <Switch checked={state.isPractical} onCheckedChange={(val) => handleChange('isPractical', val)} />
                         </div>

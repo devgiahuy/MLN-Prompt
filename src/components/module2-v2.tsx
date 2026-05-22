@@ -11,10 +11,10 @@ import { Wand2, Layers, Sparkles } from 'lucide-react';
 
 export default function Module2V2() {
    const [state, setState] = useState({
-      persona: 'Chuyên gia cố vấn Khởi nghiệp (Startup Advisor)',
+      persona: 'Chuyên gia cố vấn Khởi nghiệp',
       context: 'Dự án phát triển nền tảng e-commerce thực phẩm healthy có tính toán dinh dưỡng. Nguồn lực chỉ là một nhóm sinh viên, thời gian triển khai giới hạn trong 3 tháng. Ngân sách marketing hiện tại bằng 0.',
       task: 'Lập kế hoạch ra mắt một nền tảng thương mại điện tử',
-      constraintFormat: 'Kế hoạch hành động (Action Plan)',
+      constraintFormat: 'Kế hoạch hành động',
       constraintLength: 'Ngắn gọn, súc tích',
       customConstraint: '',
       isComprehensive: false,
@@ -87,6 +87,7 @@ export default function Module2V2() {
                               <SelectValue placeholder="Chọn vai trò" />
                            </SelectTrigger>
                            <SelectContent className="bg-white/95 backdrop-blur-md border border-slate-200/80 text-slate-700 rounded-2xl shadow-xl min-w-[240px]">
+                              <SelectItem value="Chuyên gia cố vấn Khởi nghiệp">Chuyên gia cố vấn Khởi nghiệp</SelectItem>
                               <SelectItem value="Chuyên gia Triết học">Chuyên gia Triết học</SelectItem>
                               <SelectItem value="Sinh viên Gen Z">Sinh viên Gen Z</SelectItem>
                               <SelectItem value="Nhà phê bình công nghệ">Nhà phê bình công nghệ</SelectItem>

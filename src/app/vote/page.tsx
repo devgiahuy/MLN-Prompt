@@ -320,9 +320,17 @@ function VoteContent() {
   // Rendering Options Selection (Voting Screen)
   return (
     <div className="flex flex-col min-h-screen bg-neutral-950 text-white p-4">
-      <div className="py-6 text-center">
-        <h1 className="text-xl font-bold text-neutral-400 tracking-widest uppercase">PhiloPrompt</h1>
-        <p className="text-sm text-neutral-500 mt-2">Đang mở khóa Khe cắm số {currentSlotId}</p>
+      <div className="py-6 text-center border-b border-neutral-900 mb-6">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-950/50 border border-green-800/40 text-green-400 text-[10px] font-bold uppercase tracking-widest mb-3">
+          Module 4: Game Giải Cứu AI
+        </div>
+        <h1 className="text-xl font-black text-green-400 tracking-widest uppercase">PhiloPrompt Vote</h1>
+        <p className="text-xs text-neutral-400 max-w-xs mx-auto mt-2 leading-relaxed">
+          Chủ đề: Khắc phục tư duy siêu hình, áp dụng Biện chứng và Thực tiễn vào Prompt Engineering
+        </p>
+        <p className="text-sm text-green-500 font-bold mt-4 font-mono">
+          &gt;&gt; Đang mở khóa: Khe {currentSlotId}/4
+        </p>
       </div>
 
       <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-4 pb-8">

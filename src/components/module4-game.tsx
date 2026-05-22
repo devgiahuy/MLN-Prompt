@@ -426,11 +426,22 @@ export default function Module4Game() {
         {/* LEFT: Projector Board (Slots) */}
         <div className="flex-1 space-y-8">
           <div className="mb-12 border-b border-green-900 pb-6">
-            <h2 className="text-4xl font-black tracking-widest uppercase mb-2">
-              Jailbreak AI
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-950 border border-green-800 text-green-400 font-bold text-xs uppercase tracking-widest mb-4">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-ping" /> MODULE 4: GAME TƯƠNG TÁC REALTIME
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-widest uppercase mb-4 text-green-400">
+              [ JAILBREAK AI: CỨU AI ẢO GIÁC ]
             </h2>
-            <p className="text-green-700">
-              System Override Protocol - Phase {Math.min(currentSlot, 4)}/4
+            <div className="p-4 rounded-xl bg-green-950/20 border border-green-900/50 mb-4 max-w-3xl">
+              <span className="text-yellow-500 font-bold text-xl uppercase block mb-1">
+                // CHỦ ĐỀ CHÍNH CỦA GAME: Thông tin giả trên mạng xã hội
+              </span>
+              <p className="text-green-300 font-bold text-sm md:text-base leading-relaxed">
+                Vận dụng mối quan hệ biện chứng giữa Vật chất & Ý thức và các Quan điểm Phương pháp luận để chốt các mảnh ghép dữ liệu (Context, Persona, Task, Constraints), khắc phục lỗi tư duy siêu hình và ảo giác của AI.
+              </p>
+            </div>
+            <p className="text-green-700 text-sm">
+              System Override Protocol - Phase {Math.min(currentSlot, 4)}/4 • Quét mã QR bên phải và bình chọn trên điện thoại để đồng thuận đẩy dữ liệu vào hệ thống.
             </p>
           </div>
 

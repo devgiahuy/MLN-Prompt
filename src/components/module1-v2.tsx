@@ -77,8 +77,8 @@ function HeroSection({ opacity, scale }: { opacity: any; scale: any }) {
           className="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed"
         >
           Khám phá sự giao thoa giữa tư duy biện chứng và trí tuệ nhân tạo.
-          Không cần slide, hãy cuộn xuống để trực quan hóa triết lý thành dòng
-          chảy dữ liệu.
+          <br className="hidden md:block" />
+          Bạn hãy cuộn xuống để trực quan hóa triết lý thành dòng chảy dữ liệu.
         </motion.p>
       </div>
 

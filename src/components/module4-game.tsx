@@ -1,10 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
+import { RealtimeChannel } from "@supabase/supabase-js";
 import { QRCodeSVG } from "qrcode.react";
 import { ShieldAlert } from "lucide-react";
+
+interface GameOption {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+}
 
 // const GAME_DATA = [
 //   {
@@ -159,8 +166,7 @@ const GAME_DATA = [
 export default function Module4Game() {
   const [currentSlot, setCurrentSlot] = useState(1);
   const [votesCount, setVotesCount] = useState({ A: 0, B: 0, C: 0, D: 0 });
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [slottedCards, setSlottedCards] = useState<{ [key: number]: any }>({
+  const [slottedCards, setSlottedCards] = useState<{ [key: number]: GameOption | null }>({
     1: null,
     2: null,
     3: null,
@@ -168,19 +174,10 @@ export default function Module4Game() {
   });
   const [isGlitching, setIsGlitching] = useState(false);
   const [hostUrl, setHostUrl] = useState("");
+  const [gameControlChannel, setGameControlChannel] = useState<RealtimeChannel | null>(null);
 
-  // Set host URL for QR code on mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Dùng địa chỉ IP LAN thật nếu muốn sinh viên scan được,
-      // ở đây tạm dùng host hiện tại của trình duyệt.
-      setHostUrl(`${window.location.protocol}//${window.location.host}`);
-    }
-  }, []);
-
-  // 🔥 HÀM 1: Lấy dữ liệu đã có sẵn trong Database khi mới load trang hoặc đổi Slot
-  const fetchExistingVotes = async (slot: number) => {
-    setIsLoading(true);
+  // 🔥 HÀM 1: Lấy dữ liệu đã có sẵn trong Database khi mới load trang hoặc đổi Slot (Dùng useCallback để ổn định dependency)
+  const fetchExistingVotes = useCallback(async (slot: number) => {
     try {
       const { data, error } = await supabase
         .from("votes")
@@ -206,15 +203,145 @@ export default function Module4Game() {
       setVotesCount(newCounts);
     } catch (err) {
       console.error("Lỗi lấy dữ liệu từ Supabase:", err);
-    } finally {
-      setIsLoading(false);
     }
-  };
+  }, []);
 
-  // 🔥 HÀM 2: Theo dõi dữ liệu Realtime kết hợp Fetch data
+  const forceWin = useCallback(() => {
+    if (currentSlot > 4) return;
+    const currentData = GAME_DATA.find((d) => d.slot_id === currentSlot);
+    const correctOpt = currentData?.options.find((o) => o.isCorrect) || null;
+
+    setSlottedCards((prev) => ({ ...prev, [currentSlot]: correctOpt }));
+
+    // Broadcast success
+    if (gameControlChannel) {
+      gameControlChannel.send({
+        type: "broadcast",
+        event: "answer-locked",
+        payload: { slotId: currentSlot, correct: true, nextSlot: currentSlot + 1 }
+      });
+    }
+
+    setVotesCount({ A: 0, B: 0, C: 0, D: 0 });
+    setCurrentSlot((prev) => prev + 1);
+  }, [currentSlot, gameControlChannel]);
+
+  const handleLockAnswer = useCallback(() => {
+    const currentData = GAME_DATA.find((d) => d.slot_id === currentSlot);
+    if (!currentData) return;
+
+    const totalVotes = Object.values(votesCount).reduce((a, b) => a + b, 0);
+    if (totalVotes === 0) {
+      alert("Chưa có ai bình chọn! Vui lòng đợi sinh viên quét mã và vote.");
+      return;
+    }
+
+    // Lấy đáp án được vote nhiều nhất
+    let maxVote = -1;
+    let maxOptions: string[] = [];
+    Object.entries(votesCount).forEach(([opt, count]) => {
+      if (count > maxVote) {
+        maxVote = count;
+        maxOptions = [opt];
+      } else if (count === maxVote) {
+        maxOptions.push(opt);
+      }
+    });
+
+    if (maxOptions.length > 1) {
+      // Có 2 đáp án trở lên bằng điểm nhau -> không cho qua
+      setIsGlitching(true);
+
+      // Broadcast failure
+      if (gameControlChannel) {
+        gameControlChannel.send({
+          type: "broadcast",
+          event: "answer-locked",
+          payload: { slotId: currentSlot, correct: false }
+        });
+      }
+
+      setTimeout(() => {
+        setIsGlitching(false);
+        setVotesCount({ A: 0, B: 0, C: 0, D: 0 }); // Reset vote
+      }, 3000);
+      return;
+    }
+
+    const selectedOptionId = maxOptions[0];
+
+    const selectedOption = currentData.options.find(
+      (o) => o.id === selectedOptionId,
+    );
+
+    if (selectedOption?.isCorrect) {
+      // Đúng -> Cắm thẻ vào khe
+      setSlottedCards((prev) => ({ ...prev, [currentSlot]: selectedOption }));
+
+      // Broadcast success
+      if (gameControlChannel) {
+        gameControlChannel.send({
+          type: "broadcast",
+          event: "answer-locked",
+          payload: { slotId: currentSlot, correct: true, nextSlot: currentSlot + 1 }
+        });
+      }
+
+      setVotesCount({ A: 0, B: 0, C: 0, D: 0 });
+      setCurrentSlot((prev) => prev + 1);
+    } else {
+      // Sai -> Glitch
+      setIsGlitching(true);
+
+      // Broadcast failure
+      if (gameControlChannel) {
+        gameControlChannel.send({
+          type: "broadcast",
+          event: "answer-locked",
+          payload: { slotId: currentSlot, correct: false }
+        });
+      }
+
+      setTimeout(() => {
+        setIsGlitching(false);
+        setVotesCount({ A: 0, B: 0, C: 0, D: 0 }); // Reset vote
+      }, 3000);
+    }
+  }, [currentSlot, votesCount, gameControlChannel]);
+
+  // Set host URL for QR code on mount & initialize broadcast channel
   useEffect(() => {
-    // Đầu tiên, lấy toàn bộ dữ liệu đã có sẵn trong DB ra hiển thị trước
-    fetchExistingVotes(currentSlot);
+    if (typeof window !== "undefined") {
+      // Chạy bất đồng bộ để tránh cảnh báo setState trong effect
+      const url = `${window.location.protocol}//${window.location.host}`;
+      const timer = setTimeout(() => {
+        setHostUrl(url);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Initialize broadcast channel separately
+  useEffect(() => {
+    const channel = supabase.channel("game-control");
+    channel.subscribe((status) => {
+      console.log("Game control channel status:", status);
+    });
+    const timer = setTimeout(() => {
+      setGameControlChannel(channel);
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  // 🔥 HÀM 2: Theo dõi dữ liệu Realtime kết hợp Fetch data (Chạy bất đồng bộ để tránh setState trong effect)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchExistingVotes(currentSlot);
+    }, 0);
 
     // Kích hoạt kênh lắng nghe Realtime từ Supabase khi sinh viên bấm nút mới
     const channel = supabase
@@ -248,9 +375,10 @@ export default function Module4Game() {
 
     // Hủy đăng ký lắng nghe (Clean up) khi component bị hủy hoặc khi đổi sang Slot khác
     return () => {
+      clearTimeout(timer);
       supabase.removeChannel(channel);
     };
-  }, [currentSlot]);
+  }, [currentSlot, fetchExistingVotes]);
 
   // Cheat Code Handler
   useEffect(() => {
@@ -261,70 +389,7 @@ export default function Module4Game() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSlot]);
-
-  const forceWin = () => {
-    if (currentSlot > 4) return;
-    const currentData = GAME_DATA.find((d) => d.slot_id === currentSlot);
-    const correctOpt = currentData?.options.find((o) => o.isCorrect);
-
-    setSlottedCards((prev) => ({ ...prev, [currentSlot]: correctOpt }));
-    setVotesCount({ A: 0, B: 0, C: 0, D: 0 });
-    setCurrentSlot((prev) => prev + 1);
-  };
-
-  const handleLockAnswer = () => {
-    const currentData = GAME_DATA.find((d) => d.slot_id === currentSlot);
-    if (!currentData) return;
-
-    const totalVotes = Object.values(votesCount).reduce((a, b) => a + b, 0);
-    if (totalVotes === 0) {
-      alert("Chưa có ai bình chọn! Vui lòng đợi sinh viên quét mã và vote.");
-      return;
-    }
-
-    // Lấy đáp án được vote nhiều nhất
-    let maxVote = -1;
-    let maxOptions: string[] = [];
-    Object.entries(votesCount).forEach(([opt, count]) => {
-      if (count > maxVote) {
-        maxVote = count;
-        maxOptions = [opt];
-      } else if (count === maxVote) {
-        maxOptions.push(opt);
-      }
-    });
-
-    if (maxOptions.length > 1) {
-      // Có 2 đáp án trở lên bằng điểm nhau -> không cho qua
-      setIsGlitching(true);
-      setTimeout(() => {
-        setIsGlitching(false);
-        setVotesCount({ A: 0, B: 0, C: 0, D: 0 }); // Reset vote
-      }, 3000);
-      return;
-    }
-
-    const selectedOptionId = maxOptions[0];
-
-    const selectedOption = currentData.options.find(
-      (o) => o.id === selectedOptionId,
-    );
-
-    if (selectedOption?.isCorrect) {
-      // Đúng -> Cắm thẻ vào khe
-      setSlottedCards((prev) => ({ ...prev, [currentSlot]: selectedOption }));
-      setVotesCount({ A: 0, B: 0, C: 0, D: 0 });
-      setCurrentSlot((prev) => prev + 1);
-    } else {
-      // Sai -> Glitch
-      setIsGlitching(true);
-      setTimeout(() => {
-        setIsGlitching(false);
-        setVotesCount({ A: 0, B: 0, C: 0, D: 0 }); // Reset vote
-      }, 3000);
-    }
-  };
+  }, [forceWin]);
 
   const currentData = GAME_DATA.find((d) => d.slot_id === currentSlot);
 
@@ -380,13 +445,12 @@ export default function Module4Game() {
               return (
                 <div
                   key={slotIndex}
-                  className={`p-6 rounded-2xl border-2 transition-all duration-500 ${
-                    card
+                  className={`p-6 rounded-2xl border-2 transition-all duration-500 ${card
                       ? "bg-green-950 border-green-500"
                       : isActive
                         ? "border-dashed border-green-400 bg-green-950/20"
                         : "border-dashed border-neutral-800 bg-neutral-900/50"
-                  } h-40 flex flex-col justify-center relative`}
+                    } h-40 flex flex-col justify-center relative`}
                 >
                   <div className="text-sm text-green-700 font-bold mb-2 uppercase">
                     {title}
@@ -489,12 +553,21 @@ export default function Module4Game() {
                 ))}
               </div>
 
-              <button
-                onClick={handleLockAnswer}
-                className="w-full mt-6 bg-green-600 hover:bg-green-500 text-black font-black uppercase tracking-widest py-4 rounded-xl transition-colors"
-              >
-                Chốt Đáp Án
-              </button>
+              <div className="flex flex-col gap-3 mt-6">
+                <button
+                  onClick={handleLockAnswer}
+                  className="w-full bg-green-600 hover:bg-green-500 text-black font-black uppercase tracking-widest py-4 rounded-xl transition-colors cursor-pointer"
+                >
+                  Chốt Đáp Án
+                </button>
+
+                <button
+                  onClick={forceWin}
+                  className="w-full bg-neutral-950 hover:bg-neutral-900 text-yellow-500 hover:text-yellow-400 border border-yellow-500/30 hover:border-yellow-500/60 font-black uppercase tracking-widest py-3 rounded-xl transition-all cursor-pointer text-xs flex items-center justify-center gap-2"
+                >
+                  Duyệt Đáp Án Đúng (Bỏ Qua)
+                </button>
+              </div>
             </div>
           </div>
         )}

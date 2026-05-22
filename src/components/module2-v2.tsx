@@ -11,11 +11,11 @@ import { Wand2, Layers, Sparkles } from 'lucide-react';
 
 export default function Module2V2() {
    const [state, setState] = useState({
-      persona: 'Nhà phê bình công nghệ',
-      context: 'Giao diện thiết kế không gian (Spatial UI)',
-      task: 'Tạo cảm giác chân thực và sang trọng',
-      constraintFormat: 'Văn xuôi',
-      constraintLength: 'Ngắn gọn',
+      persona: 'Chuyên gia cố vấn Khởi nghiệp (Startup Advisor)',
+      context: 'Dự án phát triển nền tảng e-commerce thực phẩm healthy có tính toán dinh dưỡng. Nguồn lực chỉ là một nhóm sinh viên, thời gian triển khai giới hạn trong 3 tháng. Ngân sách marketing hiện tại bằng 0.',
+      task: 'Lập kế hoạch ra mắt một nền tảng thương mại điện tử',
+      constraintFormat: 'Kế hoạch hành động (Action Plan)',
+      constraintLength: 'Ngắn gọn, súc tích',
       customConstraint: '',
       isComprehensive: false,
       isDevelopment: false,

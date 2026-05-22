@@ -285,13 +285,27 @@ export default function Module4Game() {
 
     // Lấy đáp án được vote nhiều nhất
     let maxVote = -1;
-    let selectedOptionId = "A";
+    let maxOptions: string[] = [];
     Object.entries(votesCount).forEach(([opt, count]) => {
       if (count > maxVote) {
         maxVote = count;
-        selectedOptionId = opt;
+        maxOptions = [opt];
+      } else if (count === maxVote) {
+        maxOptions.push(opt);
       }
     });
+
+    if (maxOptions.length > 1) {
+      // Có 2 đáp án trở lên bằng điểm nhau -> không cho qua
+      setIsGlitching(true);
+      setTimeout(() => {
+        setIsGlitching(false);
+        setVotesCount({ A: 0, B: 0, C: 0, D: 0 }); // Reset vote
+      }, 3000);
+      return;
+    }
+
+    const selectedOptionId = maxOptions[0];
 
     const selectedOption = currentData.options.find(
       (o) => o.id === selectedOptionId,
@@ -449,7 +463,7 @@ export default function Module4Game() {
               <div className="space-y-4">
                 {currentData.options.map((opt) => (
                   <motion.div
-                    key={opt.id}
+                    key={`${currentSlot}-${opt.id}`}
                     layoutId={`card-${opt.id}-${currentSlot}`}
                     className="flex items-center gap-4 p-4 border border-green-900/50 bg-green-950/20 rounded-xl relative overflow-hidden"
                   >

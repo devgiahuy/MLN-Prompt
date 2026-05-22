@@ -86,7 +86,7 @@ export default function Module2V2() {
                            <SelectTrigger className="w-full bg-white/90 border-white/60 text-slate-800 h-12 rounded-2xl focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors shadow-sm">
                               <SelectValue placeholder="Chọn vai trò" />
                            </SelectTrigger>
-                           <SelectContent className="bg-white/95 border-white/60 text-slate-600 rounded-xl">
+                           <SelectContent className="bg-white/95 backdrop-blur-md border border-slate-200/80 text-slate-700 rounded-2xl shadow-xl min-w-[240px]">
                               <SelectItem value="Chuyên gia Triết học">Chuyên gia Triết học</SelectItem>
                               <SelectItem value="Sinh viên Gen Z">Sinh viên Gen Z</SelectItem>
                               <SelectItem value="Nhà phê bình công nghệ">Nhà phê bình công nghệ</SelectItem>
